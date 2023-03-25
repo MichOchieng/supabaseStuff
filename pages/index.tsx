@@ -13,7 +13,7 @@ export default function Home({ lesson }: any) {
       </Head>
       <main className={'w-full h-screen flex flex-col items-center justify-center'}>
        {lesson.map((data:any) => (
-         <Link href={`/${lesson.id}`} key={data.id} className="border">
+         <Link href={`/${data.id}`} key={data.id} className="border">
            <h1>{data.title}</h1>
          </Link>
        ))}
