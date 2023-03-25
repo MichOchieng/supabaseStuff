@@ -1,30 +1,46 @@
 import React from 'react'
 import { supabase } from "../utils/supabase"
 
-const LessonDetails = () => {
+const LessonDetails = ({lesson}:any) => {
+console.log({lesson});
+    
   return (
-    <div>LessonDetails</div>
+    <div className='w-full h-screen flex flex-col items-center justify-center'>
+        <h1>{lesson.title}</h1>
+        <p>{lesson.desc}</p>
+    </div>
   )
 }
 
 export const getStaticPaths = async () => {
-    const { data: lessons } = await supabase.from('lesson').select(`id`)
+    const { data: lessons } = await supabase
+        .from('lesson')
+        .select('id')
 
-    lessons!.map(({id}) => {
+    const paths = lessons!.map(({id}) => ({
         params: {
-            id: id.toString()
-        }
-    })
+            id: id.toString(),
+        },
+    }));
+
+    return {
+        paths,
+        fallback: false,
+    };
 }
 
-export const getStaticProps = async () => {
-    const { data: lessons } = await supabase.from('lesson').select(`*`)
+export const getStaticProps = async ({ params: { id } }:any) => {
+    const { data: lesson } = await supabase
+        .from('lesson')
+        .select('*')
+        .eq('id',id)
+        .single()
 
-    lessons!.map(({id}) => {
-        params: {
-            id: id.toString()
-        }
-    })
+    return {
+        props: {
+            lesson,
+        },
+    };
 }
 
 export default LessonDetails
