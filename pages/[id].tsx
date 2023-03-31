@@ -2,7 +2,6 @@ import React from 'react'
 import { supabase } from "../utils/supabase"
 
 const LessonDetails = ({lesson}:any) => {
-console.log({lesson});
     
   return (
     <div className='w-full h-screen flex flex-col items-center justify-center'>

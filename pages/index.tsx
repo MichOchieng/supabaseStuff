@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import { supabase } from "../utils/supabase"
 import Link from 'next/link'
+import { supabase } from "../utils/supabase"
 
 export default function Home({ lesson }: any) {
   return (
