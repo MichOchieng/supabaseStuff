@@ -1,12 +1,13 @@
 import { supabase } from '@/utils/supabase'
 import React from 'react'
+import { useUser } from '@/context/user'
 
 const Login = () => {
+  const { login } = useUser()
+
   React.useEffect(() => {
-    supabase.auth.signInWithOAuth({
-        provider: 'github',
-    })
-  })
+    login()
+  },[])
 
   return (
     <div>Login</div>
