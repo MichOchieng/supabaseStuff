@@ -1,8 +1,13 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { supabase } from "../utils/supabase"
+import { useUser } from '@/context/user'
 
 export default function Home({ lesson }: any) {
+  const { user } = useUser()
+  console.log(user);
+  
+
   return (
     <>
       <Head>
